@@ -8,8 +8,8 @@ export default function Footer() {
             padding: '2.5rem 1rem 0',
             textAlign: 'center'
         }}>
-            <div style={{ fontFamily: 'Georgia, serif', fontSize: '2rem', color: '#e8b84b', marginBottom: '0.25rem' }}>
-                FoodHub
+            <div className="font-serif text-2xl text-[#e8b84b] mb-1">
+                Bisi&apos;s <span className="italic text-[#fdf6ec]">Foodhub</span>
             </div>
             <p style={{ color: '#9a8870', fontSize: '0.875rem', marginBottom: '1.25rem' }}>
                 Your Food Delivery Partner — Lagos, Nigeria
@@ -19,7 +19,7 @@ export default function Footer() {
                     { href: '#menu', text: 'Menu' },
                     { href: '#our-story', text: 'Our Story' },
                     { href: '#specials', text: 'Specials' },
-                    { href: 'https://wa.me/2348000000000', text: 'WhatsApp Us' }
+                    { href: 'https://wa.me/234890138644', text: 'WhatsApp Us' }
                 ].map(link => (
                     <a
                         key={link.href}
@@ -38,7 +38,7 @@ export default function Footer() {
                 ))}
             </div>
             <p style={{ fontSize: '0.75rem', color: 'rgba(154, 136, 112, 0.4)' }}>
-                © 2026 FoodHub. All rights reserved.
+                © 2026 Bisi&apos;s Foodhub. All rights reserved.
             </p>
         </footer>
     );
