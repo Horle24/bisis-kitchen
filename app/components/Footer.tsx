@@ -8,8 +8,8 @@ export default function Footer() {
             padding: '2.5rem 1rem 0',
             textAlign: 'center'
         }}>
-            <div className="font-serif text-2xl text-[#e8b84b] mb-1">
-                Bisi&apos;s <span className="italic text-[#fdf6ec]">Foodhub</span>
+            <div style={{ fontFamily: 'Georgia, serif', fontSize: '2rem', color: '#e8b84b', marginBottom: '0.25rem' }}>
+               Bisi&apos;s <span className="italic text-[#fdf6ec]">Foodhub</span>
             </div>
             <p style={{ color: '#9a8870', fontSize: '0.875rem', marginBottom: '1.25rem' }}>
                 Your Food Delivery Partner — Lagos, Nigeria
