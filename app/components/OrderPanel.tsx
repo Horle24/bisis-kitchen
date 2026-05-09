@@ -129,7 +129,7 @@ export default function OrderPanel({ cart, onClose, onChangeQty }: OrderPanelPro
             `_Sent from Bisi's FoodHub website_`,
         ].filter(line => line !== "").join("\n");
 
-        window.open(`https://wa.me/2348165636953?text=${encodeURIComponent(message)}`, "_blank");
+        window.open(`https://wa.me/2349013864489?text=${encodeURIComponent(message)}`, "_blank");
     }
 
     return (
