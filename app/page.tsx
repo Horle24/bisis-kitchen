@@ -12,11 +12,10 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const { cart, cartCount, cartTotal, addToCart, changeQty, isCartOpen, openCart, closeCart } = useCart();
 
-  // Load menu on mount
   useEffect(() => {
     async function loadMenu() {
       try {
-        const res = await fetch("/api/menu");
+        const res = await fetch("/api/menu"); // ✅ removed invalid `next: { revalidate }` on client
         const items = (await res.json()) as MenuItem[];
         setMenu(items);
       } catch (error) {
@@ -25,7 +24,6 @@ export default function Home() {
         setLoading(false);
       }
     }
-
     loadMenu();
   }, []);
 
@@ -36,10 +34,7 @@ export default function Home() {
       <HeroSection />
 
       {/* About / Our Story */}
-      <section
-        id="our-story"
-        style={{ padding: '6rem 1rem', backgroundColor: '#140b00' }}
-      >
+      <section id="our-story" style={{ padding: '6rem 1rem', backgroundColor: '#140b00' }}>
         <div style={{
           maxWidth: '72rem',
           margin: '0 auto',
@@ -62,7 +57,7 @@ export default function Home() {
             gap: '0.75rem',
             color: '#9a8870'
           }} className="md-h-420">
-            <span style={{ fontSize: '4rem' }}>🚀</span>
+            <span style={{ fontSize: '4rem' }}>🛵</span>
             <p style={{ fontSize: '0.875rem' }}>Fast and Reliable Delivery</p>
           </div>
 
@@ -75,7 +70,7 @@ export default function Home() {
               letterSpacing: '0.05em',
               textTransform: 'uppercase'
             }}>
-              About FoodHub
+              About Bisi&apos;s FoodHub
             </span>
             <h2 style={{
               fontFamily: 'Georgia, serif',
@@ -93,56 +88,28 @@ export default function Home() {
               backgroundColor: '#c9952a',
               margin: '1.25rem 0'
             }} />
-            <p style={{
-              color: '#9a8870',
-              lineHeight: 1.6,
-              marginBottom: '1rem'
-            }}>
-              FoodHub is your go-to platform for ordering delicious meals from
+            <p style={{ color: '#9a8870', lineHeight: 1.6, marginBottom: '1rem' }}>
+              Bisi&apos;s FoodHub is your go-to platform for ordering delicious meals from
               a variety of restaurants across Lagos. We partner with local
               eateries to bring you fresh, high-quality food right to your doorstep.
             </p>
-            <p style={{
-              color: '#9a8870',
-              lineHeight: 1.6,
-              marginBottom: '2rem'
-            }}>
+            <p style={{ color: '#9a8870', lineHeight: 1.6, marginBottom: '2rem' }}>
               Choose from diverse cuisines, place your order easily, and enjoy
-              fast delivery. No hassle, just great food from your favorite spots.
+              fast delivery. No hassle, just great food from your favourite spots.
             </p>
 
             {/* Stats */}
-            <div style={{
-              display: 'flex',
-              gap: '2rem',
-              flexWrap: 'wrap'
-            }}>
+            <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
               {[
                 { num: "50+", label: "Partner Restaurants" },
                 { num: "1000+", label: "Daily Orders" },
                 { num: "5k+", label: "Happy Customers" },
               ].map(stat => (
-                <div
-                  key={stat.label}
-                  style={{
-                    borderLeft: '2px solid #c9952a',
-                    paddingLeft: '1rem'
-                  }}
-                >
-                  <div style={{
-                    fontFamily: 'Georgia, serif',
-                    fontSize: '1.875rem',
-                    color: '#e8b84b'
-                  }}>
+                <div key={stat.label} style={{ borderLeft: '2px solid #c9952a', paddingLeft: '1rem' }}>
+                  <div style={{ fontFamily: 'Georgia, serif', fontSize: '1.875rem', color: '#e8b84b' }}>
                     {stat.num}
                   </div>
-                  <div style={{
-                    fontSize: '0.75rem',
-                    color: '#9a8870',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.025em',
-                    marginTop: '0.125rem'
-                  }}>
+                  <div style={{ fontSize: '0.75rem', color: '#9a8870', textTransform: 'uppercase', letterSpacing: '0.025em', marginTop: '0.125rem' }}>
                     {stat.label}
                   </div>
                 </div>
@@ -163,28 +130,19 @@ export default function Home() {
               letterSpacing: '0.05em',
               textTransform: 'uppercase'
             }}>
-              Why Choose FoodHub
+              Why Choose Bisi&apos;s FoodHub
             </span>
-            <h2 style={{
-              fontFamily: 'Georgia, serif',
-              fontSize: '2.25rem',
-              color: '#fdf6ec',
-              marginTop: '0.5rem'
-            }}>
+            <h2 style={{ fontFamily: 'Georgia, serif', fontSize: '2.25rem', color: '#fdf6ec', marginTop: '0.5rem' }}>
               What Makes Us <em style={{ color: '#e8b84b' }}>Special</em>
             </h2>
           </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '1.25rem'
-          }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.25rem' }}>
             {[
               { icon: "🏪", title: "Multiple Restaurants", desc: "Choose from a wide variety of restaurants offering different cuisines." },
               { icon: "🌿", title: "Fresh Ingredients", desc: "Partner restaurants use only the freshest ingredients for quality meals." },
-              { icon: "🛵", title: "Fast Delivery", desc: "Quick and reliable delivery straight to your door from 30–45 mins." },
-              { icon: "💬", title: "Easy Ordering", desc: "Simple ordering process via WhatsApp. Customize your order anytime." },
+              { icon: "🛵", title: "Fast Delivery", desc: "Quick and reliable delivery straight to your door in 30–45 mins." },
+              { icon: "💬", title: "Easy Ordering", desc: "Simple ordering via WhatsApp. Customize your order anytime." },
             ].map(card => (
               <div
                 key={card.title}
@@ -200,19 +158,10 @@ export default function Home() {
                 onMouseOut={(e) => e.currentTarget.style.borderColor = 'rgba(201, 149, 42, 0.2)'}
               >
                 <span style={{ fontSize: '2.5rem', display: 'block', marginBottom: '0.75rem' }}>{card.icon}</span>
-                <h3 style={{
-                  fontFamily: 'Georgia, serif',
-                  fontSize: '1.125rem',
-                  color: '#fdf6ec',
-                  marginBottom: '0.5rem'
-                }}>
+                <h3 style={{ fontFamily: 'Georgia, serif', fontSize: '1.125rem', color: '#fdf6ec', marginBottom: '0.5rem' }}>
                   {card.title}
                 </h3>
-                <p style={{
-                  fontSize: '0.875rem',
-                  color: '#9a8870',
-                  lineHeight: 1.6
-                }}>
+                <p style={{ fontSize: '0.875rem', color: '#9a8870', lineHeight: 1.6 }}>
                   {card.desc}
                 </p>
               </div>
@@ -223,20 +172,12 @@ export default function Home() {
 
       {/* Menu */}
       {loading ? (
-        <div style={{
-          padding: '6rem 1rem',
-          textAlign: 'center',
-          color: '#9a8870'
-        }}>
+        <div style={{ padding: '6rem 1rem', textAlign: 'center', color: '#9a8870' }}>
           <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }} className="animate-bounce">🍽</div>
           <p>Loading today&apos;s menu...</p>
         </div>
       ) : (
-        <MenuSection
-          menu={menu}
-          cart={cart}
-          onAdd={addToCart}
-        />
+        <MenuSection menu={menu} cart={cart} onAdd={addToCart} />
       )}
 
       {/* Floating Cart Bar */}
@@ -261,12 +202,12 @@ export default function Home() {
             alignItems: 'center',
             gap: '0.75rem',
             boxShadow: '0 10px 15px -3px rgba(201, 149, 42, 0.3), 0 4px 6px -2px rgba(201, 149, 42, 0.15)',
-            transition: 'transform 0.3s',
+            transition: 'all 0.3s',
             whiteSpace: 'nowrap'
           }}
           onMouseOver={(e) => {
             e.currentTarget.style.backgroundColor = '#e8b84b';
-            e.currentTarget.style.transform = 'translateX(-50%) translateY(-0.125rem)';
+            e.currentTarget.style.transform = 'translateX(-50%) translateY(-2px)';
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.backgroundColor = '#c9952a';
@@ -288,19 +229,13 @@ export default function Home() {
             {cartCount}
           </span>
           View Your Order
-          <span style={{ fontWeight: 'bold' }}>
-            ₦{cartTotal.toLocaleString()}
-          </span>
+          <span style={{ fontWeight: 'bold' }}>₦{cartTotal.toLocaleString()}</span>
         </button>
       )}
 
       {/* Order Panel */}
       {isCartOpen && (
-        <OrderPanel
-          cart={cart}
-          onClose={closeCart}
-          onChangeQty={changeQty}
-        />
+        <OrderPanel cart={cart} onClose={closeCart} onChangeQty={changeQty} />
       )}
     </div>
   );
