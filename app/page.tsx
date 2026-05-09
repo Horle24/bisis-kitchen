@@ -10,16 +10,19 @@ import OrderPanel from "./components/OrderPanel";
 export default function Home() {
   const [menu, setMenu] = useState<MenuItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [menuError, setMenuError] = useState(false);
   const { cart, cartCount, cartTotal, addToCart, changeQty, isCartOpen, openCart, closeCart } = useCart();
 
   useEffect(() => {
     async function loadMenu() {
       try {
-        const res = await fetch("/api/menu"); // ✅ removed invalid `next: { revalidate }` on client
+        const res = await fetch("/api/menu");
+        if (!res.ok) throw new Error(`API error: ${res.status}`);
         const items = (await res.json()) as MenuItem[];
         setMenu(items);
       } catch (error) {
         console.error("Menu load failed:", error);
+        setMenuError(true);
       } finally {
         setLoading(false);
       }
@@ -175,6 +178,26 @@ export default function Home() {
         <div style={{ padding: '6rem 1rem', textAlign: 'center', color: '#9a8870' }}>
           <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem' }} className="animate-bounce">🍽</div>
           <p>Loading today&apos;s menu...</p>
+        </div>
+      ) : menuError ? (
+        <div style={{ padding: '6rem 1rem', textAlign: 'center', color: '#9a8870' }}>
+          <div style={{ fontSize: '3rem', marginBottom: '0.75rem' }}>😔</div>
+          <p style={{ marginBottom: '1rem' }}>Couldn&apos;t load the menu right now.</p>
+          <button
+            onClick={() => { setMenuError(false); setLoading(true); }}
+            style={{
+              backgroundColor: '#c9952a',
+              color: '#1a0e00',
+              border: 'none',
+              borderRadius: '9999px',
+              padding: '0.625rem 1.5rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              fontSize: '0.875rem',
+            }}
+          >
+            Try Again
+          </button>
         </div>
       ) : (
         <MenuSection menu={menu} cart={cart} onAdd={addToCart} />

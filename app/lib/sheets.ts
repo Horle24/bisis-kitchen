@@ -19,7 +19,7 @@ export async function getMenuItems(): Promise<MenuItem[]> {
   }
 
   try {
-    const res = await fetch(SHEET_URL, { next: { revalidate: 60 } });
+    const res = await fetch(SHEET_URL, { next: { revalidate: 30 } });
     const csv = await res.text();
     return parseCSV(csv);
   } catch (e) {
