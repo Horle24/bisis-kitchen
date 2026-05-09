@@ -19,7 +19,7 @@ export default function Footer() {
                     { href: '#menu', text: 'Menu' },
                     { href: '#our-story', text: 'Our Story' },
                     { href: '#specials', text: 'Specials' },
-                    { href: 'https://wa.me/234890138644', text: 'WhatsApp Us' }
+                    { href: 'https://wa.me/23489013864489', text: 'WhatsApp Us' }
                 ].map(link => (
                     <a
                         key={link.href}

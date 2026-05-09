@@ -67,6 +67,6 @@ export function sendToWhatsApp(
   customer: CustomerDetails
 ): void {
   const msg = buildWhatsAppMessage(cart, customer);
-  const url = `https://wa.me/234913864489?text=${encodeURIComponent(msg)}`;
+  const url = `https://wa.me/2349013864489?text=${encodeURIComponent(msg)}`;
   window.open(url, "_blank");
 }
